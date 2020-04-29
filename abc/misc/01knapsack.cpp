@@ -14,7 +14,10 @@ int main() {
     if (j < w[i])
       dp[i + 1][j] = dp[i][j];
     else
+      // 同じ品物を1回だけ選べる場合
       dp[i + 1][j] = max(dp[i][j], dp[i][j - w[i]] + v[i]);
+      // 個数制限なしの場合
+      // dp[i + 1][j] = max(dp[i][j], dp[i + 1][j - w[i]] + v[i]);
   }
 
   cout << dp[N][W] << endl;
