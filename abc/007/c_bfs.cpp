@@ -29,7 +29,7 @@ int main() {
     int i = q.front().first;
     int j = q.front().second;
     q.pop();
-    block[i][j] = '#';
+    // block[i][j] = '#';
     rep(d, 4) {
       int ni = i + di[d], nj = j + dj[d];
       if (block[ni][nj] == '#') continue;
