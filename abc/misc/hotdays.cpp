@@ -13,12 +13,13 @@ int main() {
   rep(i, d) cin >> t[i];
   rep(j, n) { cin >> a[j] >> b[j] >> c[j]; }
 
+  auto suit = [&](int i, int j) { return a[j] <= t[i] && t[i] <= b[j]; };
+
   rep(i, d) rep(j, n) {
-    if (t[i] < a[j] || b[j] < t[i]) continue;
+    if (!suit(i, j)) continue;
     rep(k, n) {
-      if (a[k] <= t[i + 1] && t[i + 1] <= b[k]) {
-        dp[i + 1][k] = max(dp[i + 1][k], dp[i][j] + abs(c[j] - c[k]));
-      }
+      if (!suit(i + 1, k)) continue;
+      dp[i + 1][k] = max(dp[i + 1][k], dp[i][j] + abs(c[j] - c[k]));
     }
   }
   ll ans = 0;
