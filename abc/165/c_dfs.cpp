@@ -13,7 +13,7 @@ int ans;
 // e.g. 111 112 113 122 123 133 222 223 233 333
 void dfs(vector<int> A) {
   if (A.size() == n + 1) {
-    rep(i, n) cout << A[i + 1];
+    rep(i, n) printf("%x", A[i + 1]);
     cout << " ";
     int score = 0;
     rep(i, q) if (A[b[i]] - A[a[i]] == c[i]) score += d[i];
