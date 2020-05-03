@@ -15,6 +15,8 @@ int main() {
   // = A(x % B)
   // x%B が最大となるx を求めればいい
 
+  // x = pB + q (0<=q<B) と考えると (Aq)/B になる
+
   ll a, b, n;
   cin >> a >> b >> n;
   ll x = min(n, b - 1);
