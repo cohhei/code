@@ -16,24 +16,25 @@ struct edge {
 using P = pair<int, int>;
 
 vector<edge> G[MAX_V];
-int d[MAX_V];
+int dist[MAX_V];
 
+// ダイクストラ
 void dijkstra(int s) {  // s: start
   priority_queue<P, vector<P>, greater<P> > q;
-  d[s] = 0;
+  dist[s] = 0;
   q.push(P(0, s));
 
   while (!q.empty()) {
     P p = q.top();
     q.pop();
     int v = p.second;
-    if (d[v] < p.first) continue;
+    if (dist[v] < p.first) continue;
 
     for (int i = 0; i < G[v].size(); i++) {
       edge e = G[v][i];
-      if (d[e.to] > d[v] + e.cost) {
-        d[e.to] = d[v] + e.cost;
-        q.push(P(d[e.to], e.to));
+      if (dist[e.to] > dist[v] + e.cost) {
+        dist[e.to] = dist[v] + e.cost;
+        q.push(P(dist[e.to], e.to));
       }
     }
   }
@@ -42,19 +43,19 @@ void dijkstra(int s) {  // s: start
 int main() {
   int V, E, r;
   cin >> V >> E >> r;
-  rep(i, V) d[i] = INF;
+  rep(i, V) dist[i] = INF;
   rep(i, E) {
-    int s, t, dist;
-    cin >> s >> t >> dist;
-    edge e = {t, dist};
+    int s, t, d;
+    cin >> s >> t >> d;
+    edge e = {t, d};
     G[s].push_back(e);
   }
   dijkstra(r);
   rep(i, V) {
-    if (d[i] == INF)
+    if (dist[i] == INF)
       cout << "INF" << endl;
     else
-      cout << d[i] << endl;
+      cout << dist[i] << endl;
   }
   return 0;
 }
