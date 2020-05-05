@@ -24,7 +24,6 @@ void dijkstra(int s) {  // s: start
     P p = q.top();
     q.pop();
     int v = p.second;
-    if (dist[v] < p.first) continue;
 
     for (int i = 0; i < G[v].size(); i++) {
       int to = G[v][i].first;
