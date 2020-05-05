@@ -7,15 +7,11 @@ const int INF = 1e9;
 const int MAX_V = 1e5;
 const int MAX_E = 5e5;
 
-struct edge {
-  int to;
-  int cost;
-};
-
 // first: distance, second: ID of the point
 using P = pair<int, int>;
 
-vector<edge> G[MAX_V];
+// first: to, second: cost
+vector<P> G[MAX_V];
 int dist[MAX_V];
 
 // ダイクストラ
@@ -31,10 +27,11 @@ void dijkstra(int s) {  // s: start
     if (dist[v] < p.first) continue;
 
     for (int i = 0; i < G[v].size(); i++) {
-      edge e = G[v][i];
-      if (dist[e.to] > dist[v] + e.cost) {
-        dist[e.to] = dist[v] + e.cost;
-        q.push(P(dist[e.to], e.to));
+      int to = G[v][i].first;
+      int cost = G[v][i].second;
+      if (dist[to] > dist[v] + cost) {
+        dist[to] = dist[v] + cost;
+        q.push(P(dist[to], to));
       }
     }
   }
@@ -47,8 +44,9 @@ int main() {
   rep(i, E) {
     int s, t, d;
     cin >> s >> t >> d;
-    edge e = {t, d};
-    G[s].push_back(e);
+    G[s].push_back(P(t, d));
+    // 無向グラフの場合は両方に追加
+    // G[t].push_back(P(s, d));
   }
   dijkstra(r);
   rep(i, V) {
