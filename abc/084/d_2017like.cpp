@@ -20,8 +20,7 @@ bool like(int n) { return is_prime[n] && is_prime[(n + 1) / 2]; }
 int main() {
   is_prime[2] = 1;
   for (int i = 3; i < MAX_N; i += 2) is_prime[i] = calc_prime(i);
-  printf("like(3): %d, is_prime(3): %d, isPrime(2): %d\n", like(3), is_prime[3],
-         is_prime[2]);
+
   ll cnt = 0;
   for (int i = 1; i <= MAX_N; i += 2) {
     if (like(i)) cnt++;
