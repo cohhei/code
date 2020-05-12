@@ -4,31 +4,23 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-vector<int> freq[1000000001];
-
 int main() {
   int n;
   cin >> n;
-  vector<P> h(n);
+  map<ll, ll> minus;
+  map<ll, ll> plus;
   int mx = 0;
   rep(i, n) {
-    int a;
+    ll a;
     cin >> a;
-    freq[a].push_back(i);
-    mx = max(mx, a);
-    h[i] = P(a, i);
+    minus[i - a]++;
+    plus[a + i]++;
   }
 
-  rep(i, mx+1) {
-    
+  ll ans = 0;
+  for (P p : minus) {
+    ans += p.second * plus[p.first];
   }
-   sort(h.begin(), h.end());
-  rep(i, n) printf("%2d", h[i].first);
-  cout << endl;
-  rep(i, n) printf("%2d", h[i].second);
-  cout << endl;
-
-  vector<int> diff(n);
-  rep(i, n) {}
+  cout << ans << endl;
   return 0;
 }
