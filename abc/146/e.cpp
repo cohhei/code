@@ -14,15 +14,10 @@ int main() {
   rep(i, n) s[i + 1] = (s[i] + a[i]) % k;
   map<int, int> mp;
   ll ans = 0;
-  queue<int> q;
   rep(i, n + 1) {
     ans += mp[s[i]];
     mp[s[i]]++;
-    q.push(s[i]);
-    if (q.size() == k) {
-      mp[q.front()]--;
-      q.pop();
-    }
+    if (i - k + 1 >= 0) mp[s[i - k + 1]]--;
   }
   cout << ans << endl;
   return 0;
