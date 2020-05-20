@@ -48,31 +48,22 @@ struct mint {
     return res /= a;
   }
 };
+istream& operator>>(istream& is, const mint& a) { return is >> a.x; }
+ostream& operator<<(ostream& os, const mint& a) { return os << a.x; }
 
-mint choose(int n, int a) {
-  mint x = 1, y = 1;
-  rep(i, a) {
-    x *= n - i;
-    y *= i + 1;
-  }
-  return x / y;
-}
-mint f(int n, int x) {
-  if (x == n) return 1;
-  if (x == n - 1) return n;
-  return choose(n, x);
-}
+// 1ずつ増える等差数列の和
+// sum(l, r) = l + l+1 + l+2 + ... + r
+// e.g. sum(1, 3) = 1 + 2 + 3 = 6 
+ll sum(ll l, ll r) { return (l + r) * (r - l + 1) / 2; }
 
 int main() {
   int n, k;
   cin >> n >> k;
-  for (int i = k; i < n; i++) {
-    for (int j = 1; j < n + 1; j++) {
-      for (int k = j + 1; k < n; k++) {
-      }
-    }
+  mint ans;
+  for (int i = k; i <= n + 1; ++i) {
+    ll l = sum(0, i - 1), r = sum(n - i + 1, n);
+    ans += r - l + 1;
   }
-  { /* code */ }
-
+  cout << ans << endl;
   return 0;
 }
