@@ -5,8 +5,7 @@ using P = pair<int, int>;
 
 // Sieve of Eratosthenes
 // https://youtu.be/UTVg7wzMWQc?t=2774
-// 素因数分解 1e7くらいまで
-// ただし√nまででいいので1e14くらいまでいける
+// 素因数分解 1e14くらいまで
 struct Sieve {
   int n;
   vector<int> f, primes;
@@ -54,3 +53,11 @@ struct Sieve {
     return res;
   }
 };
+
+int main() {
+  ll n;
+  cin >> n;
+
+  Sieve s(10000001);  // これが限界
+  auto fs = s.factor(n);
+}
