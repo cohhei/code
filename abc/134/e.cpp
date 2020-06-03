@@ -11,11 +11,6 @@ int main() {
   rep(i, n) {
     int a;
     cin >> a;
-    int sz = c.size();
-    if (!sz) {
-      c.push_back(a);
-      continue;
-    }
     int j = lower_bound(c.begin(), c.end(), a) - c.begin() - 1;
     if (j < 0 || a == c[j]) {
       c.insert(c.begin(), a);
